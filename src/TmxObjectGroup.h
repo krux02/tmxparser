@@ -66,10 +66,10 @@ namespace Tmx
         const Tmx::Object *GetObject(int index) const { return objects.at(index); }
 
         // Get the number of objects in the list.
-        int GetNumObjects() const { return objects.size(); }
+        int GetNumObjects() const { return int(objects.size()); }
 
         // Get whether the object layer is visible.
-        int GetVisibility() const { return visible; }
+        int GetVisibility() const { return int(visible); }
 
         // Get the property set.
         const Tmx::PropertySet &GetProperties() const { return properties; }

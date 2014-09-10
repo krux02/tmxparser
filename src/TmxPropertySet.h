@@ -55,7 +55,7 @@ namespace Tmx
         std::string GetStringProperty(const std::string &name) const;
 
         // Returns the amount of properties.
-        int GetSize() const { return properties.size(); }
+        int GetSize() const { return int(properties.size()); }
 
         bool HasProperty( const std::string& name ) const;
 

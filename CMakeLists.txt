@@ -1,6 +1,7 @@
-cmake_minimum_required(VERSION 2.8)
+cmake_minimum_required(VERSION 2.8.3)
 project(tmxparser)
-set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake ${CMAKE_MODULE_PATH})
+
+set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_LIST_DIR}/cmake ${CMAKE_MODULE_PATH})
 
 set(VERSION_MAJOR 1)
 set(VERSION_MINOR 0)
@@ -35,7 +36,7 @@ include_directories(${TINYXML_INCLUDE_DIR} ${ZLIB_INCLUDE_DIRS})
 add_executable(test test/test.cpp)
 set_target_properties(test PROPERTIES
   COMPILE_FLAGS ${EXAMPLE_CFLAGS})
-target_link_libraries(test tmxparser)
+target_link_libraries(test tmxparser ${TINYXML_LIBRARIES})
 
 install(FILES ${HEADERS} DESTINATION include/tmxparser)
 install(TARGETS tmxparser tmxparser_static DESTINATION lib)
