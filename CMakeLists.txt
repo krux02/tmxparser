@@ -10,33 +10,44 @@ set(VERSION_PATCH 0)
 set(VERSION "${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}")
 message("Configuring tmxparser version ${VERSION}")
 
-file(GLOB_RECURSE SOURCES ${PROJECT_SOURCE_DIR}/src/*.cpp)
-file(GLOB_RECURSE HEADERS ${PROJECT_SOURCE_DIR}/src/*.h)
+file(GLOB_RECURSE SOURCES 
+    ${PROJECT_SOURCE_DIR}/src/*.cpp 
+    ${PROJECT_SOURCE_DIR}/src/tinyxml/*.cpp
+)
 
-find_package(TinyXML)
+file(GLOB_RECURSE HEADERS 
+    ${PROJECT_SOURCE_DIR}/src/*.h 
+    ${PROJECT_SOURCE_DIR}/src/tinyxml/*.h
+)
+
 find_package(ZLIB)
 
 set(LIB_CFLAGS "-pedantic -Werror -Wall -Werror=strict-prototypes -Werror=old-style-definition -Werror=missing-prototypes")
 set(EXAMPLE_CFLAGS "-pedantic -Werror -Wall")
-#include_directories("${PROJECT_SOURCE_DIR}/include")
+
 
 add_library(tmxparser_static STATIC ${SOURCES} ${HEADERS})
+target_include_directories(tmxparser_static PUBLIC ${PROJECT_SOURCE_DIR}/src/tinyxml)
+
 set_target_properties(tmxparser_static PROPERTIES
   OUTPUT_NAME tmxparser
   COMPILE_FLAGS ${LIB_CFLAGS})
 
 add_library(tmxparser SHARED ${SOURCES} ${HEADERS})
+
+target_include_directories(tmxparser PUBLIC ${PROJECT_SOURCE_DIR}/src/tinyxml)
+
+
 set_target_properties(tmxparser PROPERTIES
   SOVERSION ${VERSION_MAJOR}
   VERSION ${VERSION}
   COMPILE_FLAGS ${LIB_CFLAGS})
-target_link_libraries(tmxparser ${TINYXML_LIBRARIES} ${ZLIB_LIBRARIES})
-include_directories(${TINYXML_INCLUDE_DIR} ${ZLIB_INCLUDE_DIRS})
+target_link_libraries(tmxparser ${ZLIB_LIBRARIES})
+include_directories(${ZLIB_INCLUDE_DIRS})
 
 add_executable(test test/test.cpp)
 set_target_properties(test PROPERTIES
   COMPILE_FLAGS ${EXAMPLE_CFLAGS})
-target_link_libraries(test tmxparser ${TINYXML_LIBRARIES})
-
+target_link_libraries(test tmxparser)
 install(FILES ${HEADERS} DESTINATION include/tmxparser)
 install(TARGETS tmxparser tmxparser_static DESTINATION lib)
