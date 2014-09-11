@@ -27,16 +27,14 @@ set(EXAMPLE_CFLAGS "-pedantic -Werror -Wall")
 
 
 add_library(tmxparser_static STATIC ${SOURCES} ${HEADERS})
-target_include_directories(tmxparser_static PUBLIC ${PROJECT_SOURCE_DIR}/src/tinyxml)
+target_include_directories(tmxparser_static PUBLIC ${PROJECT_SOURCE_DIR}/src ${PROJECT_SOURCE_DIR}/src/tinyxml)
 
 set_target_properties(tmxparser_static PROPERTIES
   OUTPUT_NAME tmxparser
   COMPILE_FLAGS ${LIB_CFLAGS})
 
 add_library(tmxparser SHARED ${SOURCES} ${HEADERS})
-
-target_include_directories(tmxparser PUBLIC ${PROJECT_SOURCE_DIR}/src/tinyxml)
-
+target_include_directories(tmxparser PUBLIC ${PROJECT_SOURCE_DIR}/src ${PROJECT_SOURCE_DIR}/src/tinyxml)
 
 set_target_properties(tmxparser PROPERTIES
   SOVERSION ${VERSION_MAJOR}
@@ -45,9 +43,9 @@ set_target_properties(tmxparser PROPERTIES
 target_link_libraries(tmxparser ${ZLIB_LIBRARIES})
 include_directories(${ZLIB_INCLUDE_DIRS})
 
-add_executable(test test/test.cpp)
-set_target_properties(test PROPERTIES
+add_executable(testcases test/test.cpp)
+set_target_properties(testcases PROPERTIES
   COMPILE_FLAGS ${EXAMPLE_CFLAGS})
-target_link_libraries(test tmxparser)
+target_link_libraries(testcases tmxparser)
 install(FILES ${HEADERS} DESTINATION include/tmxparser)
 install(TARGETS tmxparser tmxparser_static DESTINATION lib)
