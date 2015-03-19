@@ -47,7 +47,7 @@ namespace Tmx
         void Parse(const TiXmlNode *polylineNode);
 
         // Get one of the vertices.
-        const Tmx::Point &GetPoint(int index) const { return points[index]; }
+        const Tmx::Point &GetPoint(int index) const { return points[size_t(index)]; }
 
         // Get the number of vertices.
         int GetNumPoints() const { return int(points.size()); }

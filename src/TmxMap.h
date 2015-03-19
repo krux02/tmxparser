@@ -117,7 +117,7 @@ namespace Tmx
         int GetTileHeight() const { return tile_height; }
 
         // Get the layer at a certain index.
-        const Tmx::Layer *GetLayer(int index) const { return layers.at(index); }
+        const Tmx::Layer *GetLayer(int index) const { return layers.at(size_t(index)); }
 
         // Get the amount of layers.
         int GetNumLayers() const { return int(layers.size()); }
@@ -126,7 +126,7 @@ namespace Tmx
         const std::vector< Tmx::Layer* > &GetLayers() const { return layers; }
 
         // Get the object group at a certain index.
-        const Tmx::ObjectGroup *GetObjectGroup(int index) const { return object_groups.at(index); }
+        const Tmx::ObjectGroup *GetObjectGroup(int index) const { return object_groups.at(size_t(index)); }
 
         // Get the amount of object groups.
         int GetNumObjectGroups() const { return int(object_groups.size()); }
@@ -135,7 +135,7 @@ namespace Tmx
         const std::vector< Tmx::ObjectGroup* > &GetObjectGroups() const { return object_groups; }
 
         // Get the layer at a certain index.
-        const Tmx::ImageLayer *GetImageLayer(int index) const { return image_layers.at(index); }
+        const Tmx::ImageLayer *GetImageLayer(int index) const { return image_layers.at(size_t(index)); }
 
         // Get the amount of layers.
         int GetNumImageLayers() const { return int(image_layers.size()); }
@@ -150,7 +150,7 @@ namespace Tmx
         const Tmx::Tileset *FindTileset(int gid) const;
 
         // Get a tileset by an index.
-        const Tmx::Tileset *GetTileset(int index) const { return tilesets.at(index); }
+        const Tmx::Tileset *GetTileset(int index) const { return tilesets.at(size_t(index)); }
 
         // Get the amount of tilesets.
         int GetNumTilesets() const { return int(tilesets.size()); }

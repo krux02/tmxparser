@@ -63,7 +63,7 @@ namespace Tmx
         int GetHeight() const { return height; }
 
         // Get a single object.
-        const Tmx::Object *GetObject(int index) const { return objects.at(index); }
+        const Tmx::Object *GetObject(int index) const { return objects.at(size_t(index)); }
 
         // Get the number of objects in the list.
         int GetNumObjects() const { return int(objects.size()); }

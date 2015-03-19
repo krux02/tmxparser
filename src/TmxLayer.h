@@ -94,7 +94,7 @@ namespace Tmx
         unsigned GetTileId(int x, int y) const { return tile_map[y * width + x].id; }
 
         // Get the tileset index for a tileset from the list.
-        int GetTileTilesetIndex(int x, int y) const { return tile_map[y * width + x].tilesetId; }
+        int GetTileTilesetIndex(int x, int y) const { return int(tile_map[y * width + x].tilesetId); }
 
         // Get whether a tile is flipped horizontally.
         bool IsTileFlippedHorizontally(int x, int y) const 

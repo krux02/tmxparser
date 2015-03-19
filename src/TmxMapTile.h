@@ -59,11 +59,11 @@ namespace Tmx
             , flippedVertically((_gid & FlippedVerticallyFlag) != 0)
             , flippedDiagonally((_gid & FlippedDiagonallyFlag) != 0)
         {
-            id -= _tilesetFirstGid;
+            id -= unsigned(_tilesetFirstGid);
         }
 
         // Tileset id.
-        int tilesetId;
+        unsigned tilesetId;
 
         // Id.
         unsigned id;

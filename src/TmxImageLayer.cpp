@@ -31,16 +31,14 @@ using std::string;
 
 namespace Tmx 
 {
-    ImageLayer::ImageLayer(const Tmx::Map *_map) 
-        : map(_map)
-        , name()
-        , width(0)
-        , height(0)
-        , opacity(0)
-        , visible(0)
-        , zOrder(0)
-        , image(NULL)
-
+    ImageLayer::ImageLayer(const Tmx::Map* /*_map*/) :
+        //: map(_map)
+        width(0),
+        height(0),
+        opacity(0),
+        visible(0),
+        zOrder(0),
+        image(NULL)
     {
     }
 
